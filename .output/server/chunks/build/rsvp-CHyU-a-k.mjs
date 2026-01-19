@@ -1,0 +1,90 @@
+import { defineComponent, mergeProps, ref, computed, useSSRContext } from 'vue';
+import { ssrRenderAttrs, ssrRenderAttr, ssrRenderComponent, ssrInterpolate, ssrIncludeBooleanAttr, ssrLooseContain, ssrLooseEqual } from 'vue/server-renderer';
+import { _ as _export_sfc } from './server.mjs';
+import { p as publicAssetsURL } from '../routes/renderer.mjs';
+import { u as useHead } from './composables-Dnzn258N.mjs';
+import '../nitro/nitro.mjs';
+import 'node:http';
+import 'node:https';
+import 'node:events';
+import 'node:buffer';
+import 'node:fs';
+import 'node:path';
+import 'node:crypto';
+import 'node:url';
+import 'vue-router';
+import 'vue-bundle-renderer/runtime';
+import 'unhead/server';
+import 'devalue';
+import 'unhead/utils';
+
+const _sfc_main$1 = /* @__PURE__ */ defineComponent({
+  __name: "RsvpForm",
+  __ssrInlineRender: true,
+  setup(__props) {
+    const form = ref({
+      firstName: "",
+      lastName: "",
+      email: "",
+      phone: "",
+      additionalGuests: null,
+      dietaryNotes: "",
+      joinPreWedding: null,
+      message: ""
+    });
+    const submitting = ref(false);
+    const submitted = ref(false);
+    const errorMsg = ref(null);
+    const canSubmit = computed(() => {
+      const f = form.value;
+      return f.firstName.trim().length > 0 && f.lastName.trim().length > 0 && f.email.trim().length > 0 && f.additionalGuests !== null && f.joinPreWedding !== null && !submitting.value;
+    });
+    return (_ctx, _push, _parent, _attrs) => {
+      _push(`<form${ssrRenderAttrs(mergeProps({ class: "framerForm" }, _attrs))} data-v-a54c06d9><div class="nameRow" data-v-a54c06d9><label class="field" data-v-a54c06d9><div class="label" data-v-a54c06d9>First Name</div><div class="inputWrap textWrap" data-v-a54c06d9><input id="firstName"${ssrRenderAttr("value", form.value.firstName)} class="control" type="text" required autocomplete="given-name" placeholder="First Name" data-v-a54c06d9></div></label><label class="field" data-v-a54c06d9><div class="label" data-v-a54c06d9>Last Name</div><div class="inputWrap textWrap" data-v-a54c06d9><input id="lastName"${ssrRenderAttr("value", form.value.lastName)} class="control" type="text" required autocomplete="family-name" placeholder="Last Name" data-v-a54c06d9></div></label></div><label class="field" data-v-a54c06d9><div class="label" data-v-a54c06d9>Email</div><div class="inputWrap textWrap" data-v-a54c06d9><input id="email"${ssrRenderAttr("value", form.value.email)} class="control" type="email" required autocomplete="email" placeholder="name@gmail.com" data-v-a54c06d9></div></label><label class="field" data-v-a54c06d9><div class="label" data-v-a54c06d9>How many more guest will attend?</div><div class="inputWrap selectWrap" data-v-a54c06d9><select id="additionalGuests" class="control" required data-v-a54c06d9><option${ssrRenderAttr("value", null)} disabled data-v-a54c06d9${ssrIncludeBooleanAttr(Array.isArray(form.value.additionalGuests) ? ssrLooseContain(form.value.additionalGuests, null) : ssrLooseEqual(form.value.additionalGuests, null)) ? " selected" : ""}>Select…</option><option${ssrRenderAttr("value", 0)} data-v-a54c06d9${ssrIncludeBooleanAttr(Array.isArray(form.value.additionalGuests) ? ssrLooseContain(form.value.additionalGuests, 0) : ssrLooseEqual(form.value.additionalGuests, 0)) ? " selected" : ""}>0</option><option${ssrRenderAttr("value", 1)} data-v-a54c06d9${ssrIncludeBooleanAttr(Array.isArray(form.value.additionalGuests) ? ssrLooseContain(form.value.additionalGuests, 1) : ssrLooseEqual(form.value.additionalGuests, 1)) ? " selected" : ""}>1</option><option${ssrRenderAttr("value", 2)} data-v-a54c06d9${ssrIncludeBooleanAttr(Array.isArray(form.value.additionalGuests) ? ssrLooseContain(form.value.additionalGuests, 2) : ssrLooseEqual(form.value.additionalGuests, 2)) ? " selected" : ""}>2</option><option${ssrRenderAttr("value", 3)} data-v-a54c06d9${ssrIncludeBooleanAttr(Array.isArray(form.value.additionalGuests) ? ssrLooseContain(form.value.additionalGuests, 3) : ssrLooseEqual(form.value.additionalGuests, 3)) ? " selected" : ""}>3</option><option${ssrRenderAttr("value", 4)} data-v-a54c06d9${ssrIncludeBooleanAttr(Array.isArray(form.value.additionalGuests) ? ssrLooseContain(form.value.additionalGuests, 4) : ssrLooseEqual(form.value.additionalGuests, 4)) ? " selected" : ""}>4</option></select></div></label><label class="field" data-v-a54c06d9><div class="label" data-v-a54c06d9>Do you have any allergies or dietary preferences we should be aware of?</div><div class="inputWrap textWrap" data-v-a54c06d9><input id="dietaryNotes"${ssrRenderAttr("value", form.value.dietaryNotes)} class="control" type="text" autocomplete="off" placeholder="ex: vegetarian, vegan, gluten-free, etc." data-v-a54c06d9></div></label><div class="radioGroup" role="group" aria-labelledby="preWeddingLegend" data-v-a54c06d9><div id="preWeddingLegend" class="label" data-v-a54c06d9> Will you be able to join us for the Pre-Wedding Gathering on September 26? </div><div class="radioStack" data-v-a54c06d9><label class="radioRow" data-v-a54c06d9><input${ssrIncludeBooleanAttr(ssrLooseEqual(form.value.joinPreWedding, true)) ? " checked" : ""} class="boolean" type="radio" name="joinPreWedding"${ssrRenderAttr("value", true)} required data-v-a54c06d9><span class="radioText" data-v-a54c06d9>Yes. Count me in!</span></label><label class="radioRow" data-v-a54c06d9><input${ssrIncludeBooleanAttr(ssrLooseEqual(form.value.joinPreWedding, false)) ? " checked" : ""} class="boolean" type="radio" name="joinPreWedding"${ssrRenderAttr("value", false)} required data-v-a54c06d9><span class="radioText" data-v-a54c06d9>No. I will join the main celebration only.</span></label></div></div><label class="field" data-v-a54c06d9><div class="label" data-v-a54c06d9>Leave us a message or a wish for our big day!</div><div class="inputWrap textWrap textareaWrap" data-v-a54c06d9><textarea id="message" class="control" placeholder="I would like to say..." data-v-a54c06d9>${ssrInterpolate(form.value.message)}</textarea></div></label><button class="submit" type="submit"${ssrIncludeBooleanAttr(!canSubmit.value) ? " disabled" : ""} data-v-a54c06d9><span class="submitInner" data-v-a54c06d9><span class="submitText" data-v-a54c06d9>${ssrInterpolate(submitting.value ? "Submitting…" : "Submit")}</span><svg class="submitIcon" viewBox="0 0 24 24" aria-hidden="true" data-v-a54c06d9><path d="M5 12h12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" data-v-a54c06d9></path><path d="M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" data-v-a54c06d9></path></svg></span></button>`);
+      if (submitted.value) {
+        _push(`<p class="notice success" data-v-a54c06d9>Thanks! We’ve received your RSVP.</p>`);
+      } else {
+        _push(`<!---->`);
+      }
+      if (errorMsg.value) {
+        _push(`<p class="notice error" data-v-a54c06d9>${ssrInterpolate(errorMsg.value)}</p>`);
+      } else {
+        _push(`<!---->`);
+      }
+      _push(`</form>`);
+    };
+  }
+});
+const _sfc_setup$1 = _sfc_main$1.setup;
+_sfc_main$1.setup = (props, ctx) => {
+  const ssrContext = useSSRContext();
+  (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("components/RsvpForm.vue");
+  return _sfc_setup$1 ? _sfc_setup$1(props, ctx) : void 0;
+};
+const __nuxt_component_0 = /* @__PURE__ */ Object.assign(_export_sfc(_sfc_main$1, [["__scopeId", "data-v-a54c06d9"]]), { __name: "RsvpForm" });
+const _imports_0 = publicAssetsURL("/images/rsvp.jpg");
+const _sfc_main = /* @__PURE__ */ defineComponent({
+  __name: "rsvp",
+  __ssrInlineRender: true,
+  setup(__props) {
+    useHead({
+      title: "RSVP — Noah & Sabrina"
+    });
+    return (_ctx, _push, _parent, _attrs) => {
+      const _component_RsvpForm = __nuxt_component_0;
+      _push(`<div${ssrRenderAttrs(mergeProps({ class: "section" }, _attrs))} data-v-384acd8c><div class="container" data-v-384acd8c><div class="wrap" data-v-384acd8c><div class="photo card" data-v-384acd8c><img class="img"${ssrRenderAttr("src", _imports_0)} alt="A groom carries a bride across a sunny field." width="900" height="1200" loading="lazy" data-v-384acd8c></div><div class="card panel" data-v-384acd8c><div class="kicker" data-v-384acd8c>Book your spot. See you soon!</div><h1 class="h2" data-v-384acd8c>Pre-Wedding Gathering</h1><p class="copy" data-v-384acd8c> This is a laid-back opportunity for everyone to mingle and catch up before the main event. All guests who have arrived in Barcelona are welcome to join us and enjoy a charming evening in the city! </p>`);
+      _push(ssrRenderComponent(_component_RsvpForm, null, null, _parent));
+      _push(`</div></div></div></div>`);
+    };
+  }
+});
+const _sfc_setup = _sfc_main.setup;
+_sfc_main.setup = (props, ctx) => {
+  const ssrContext = useSSRContext();
+  (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("pages/rsvp.vue");
+  return _sfc_setup ? _sfc_setup(props, ctx) : void 0;
+};
+const rsvp = /* @__PURE__ */ _export_sfc(_sfc_main, [["__scopeId", "data-v-384acd8c"]]);
+
+export { rsvp as default };
+//# sourceMappingURL=rsvp-CHyU-a-k.mjs.map

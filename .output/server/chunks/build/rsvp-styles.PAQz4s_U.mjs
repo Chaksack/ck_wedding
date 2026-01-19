@@ -1,0 +1,8 @@
+const rsvp_vue_vue_type_style_index_0_scoped_384acd8c_lang = ".wrap[data-v-384acd8c]{align-items:start;display:grid;gap:18px;grid-template-columns:1fr 1fr}.photo[data-v-384acd8c]{border-radius:22px;overflow:hidden}.img[data-v-384acd8c]{display:block;height:auto;width:100%}.panel[data-v-384acd8c]{padding:22px}.copy[data-v-384acd8c]{color:#000000bf;margin:0 0 18px}@media(max-width:950px){.wrap[data-v-384acd8c]{grid-template-columns:1fr}}";
+
+const rsvpStyles_PAQz4s_U = [
+  rsvp_vue_vue_type_style_index_0_scoped_384acd8c_lang
+];
+
+export { rsvpStyles_PAQz4s_U as default };
+//# sourceMappingURL=rsvp-styles.PAQz4s_U.mjs.map
